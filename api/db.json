@@ -1,0 +1,94 @@
+{
+  "users": [
+    {
+      "name": "Şükriye",
+      "department": "Biyoloji",
+      "salery": "4600",
+      "isTrash": false,
+      "loginId": "Z",
+      "creationDate": 1555521479200,
+      "updatedDate": 1555535730259,
+      "id": "Z38Yaz"
+    },
+    {
+      "name": "Sefa",
+      "department": "bilişim",
+      "salery": "4500",
+      "isTrash": false,
+      "loginId": "Z",
+      "creationDate": 1555521479200,
+      "updatedDate": "",
+      "id": "GDzzXjQ"
+    },
+    {
+      "loginId": "Z",
+      "name": "Ramazan",
+      "department": "Bilişim",
+      "salery": "3500",
+      "creationDate": 1555521479200,
+      "updatedDate": 1555535401779,
+      "id": "7lCTHL6",
+      "isTrash": false
+    },
+    {
+      "loginId": "Y",
+      "name": "Mustafa",
+      "department": "Tıp",
+      "salery": "6000",
+      "creationDate": 1555521479200,
+      "updatedDate": "",
+      "id": "O8svNoF"
+    },
+    {
+      "loginId": "Y",
+      "name": "Ramazan",
+      "department": "Bilişim",
+      "salery": "3500",
+      "creationDate": 1555521479200,
+      "updatedDate": "",
+      "id": "rvw5lmr"
+    },
+    {
+      "loginId": "Y",
+      "name": "Ayşe",
+      "department": "Tekstil",
+      "salery": "3300",
+      "creationDate": 1555521479200,
+      "updatedDate": 1555600886002,
+      "id": "mz4miBC",
+      "isTrash": false
+    },
+    {
+      "loginId": "Y",
+      "name": "Fatma",
+      "department": "İK",
+      "salery": "3000",
+      "creationDate": 1555521479200,
+      "updatedDate": "",
+      "id": "xaSXMKl"
+    },
+    {
+      "loginId": "Y",
+      "name": "Ahmet",
+      "department": "İnşaat",
+      "salery": "4500",
+      "creationDate": 1555521479200,
+      "updatedDate": "",
+      "id": "UKMaGAM",
+      "isTrash": false
+    }
+  ],
+  "savedUsers": [
+    {
+      "userName": "RAMAZAN",
+      "password": "2816",
+      "id": "Z"
+    },
+    {
+      "userName": "SEFA",
+      "password": "2827",
+      "id": "Y"
+    }
+  ],
+  "loginUser": []
+}
