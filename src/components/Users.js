@@ -1,45 +1,53 @@
 import React, { Component } from 'react'
 import User from "./User";
 import { connect } from 'react-redux';
-import { getUsers } from '../store/actions';
+//import { getUsers } from '../store/actions';
 
  class Users extends Component {
   componentDidMount(){
-    this.props.getUsers();
+   // this.props.getUsers();
+    //this.props.getLogin();
+ 
+    
   }
   render() {
-      const status = 200;
-      const {users} = this.props;
-
+      
+      const {users,loginUser,status} = this.props;
+      
       return (
         <div className="col-12 mt-2">
           <div className="col-12 col-sm-6 mx-auto ">
             <h1 className="bg-danger text-white mb-3 text-center rounded">
               ALL USERS
             </h1>
-          </div>
-          {status !== 200 ? (
-            <div className="spinner-border d-flex" role="status">
-              <span className="sr-only mx-auto">Loading...</span>
             </div>
-          ) : (
-            users
-              // .filter(user => {
-              //   return !user.isTrash && user.loginId === loginUser[0].id;
-              // })
+        
+                  
+
+        { status !== 200 ?
+            <div className="col-12 col-sm-6 mx-auto ">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                       </div></div>
+          : 
+         
+            //&&user.loginId === loginUser[0].id
+            users.filter(user => !user.isTrash&&user.loginId === loginUser[0].id )
               .map(user => {
+                
                 return (
                   <User
                     key={user.id}
                     id={user.id}
                     name={user.name}
                     department={user.department}
-                    salery={user.salery}
+                    salary={user.salary}
                     isTrash={user.isTrash}
                   />
                 );
               })
-          )}
+              
+          }
         </div>
       );
                     
@@ -49,10 +57,17 @@ import { getUsers } from '../store/actions';
   }
 }  
 const mapStateToProps = state => ({
-  users : state.users.list
+  users : state.users.list,
+  loginUser : state.loginUser.loginUser,
+  status : state.status.status,
+  isOpen : state.isOpen.isOpen,
+  
+  
 })
 
 const mapDispatchToProps = dispatch => ({
-  getUsers: () => dispatch(getUsers())
+ // getUsers: () => dispatch(getUsers()),
+  //getLogin : () => dispatch(getLogin())
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

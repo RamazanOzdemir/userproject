@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import UserConsumer from '../context';
-
+import { connect } from 'react-redux';
+import { side} from '../store/actions';
+import {Link} from "react-router-dom";
 class SideNavbar extends Component {
-  state ={
+  state = {
     screen : window.innerWidth
   }
   sideBarOpen=(isOpen)=>{
@@ -12,62 +13,57 @@ class SideNavbar extends Component {
         return 0
 
   }
-
-  change =(e)=>{
-    this.setState({screen:window.innerWidth})
-
-    
+  change = ()=>{
+    this.setState(()=>
+    {return {screen : window.innerWidth}}
+   
+   )
   }
+
   render() {
-     
+    const {isOpen,side} = this.props;
+    const {screen} = this.state 
+    window.addEventListener("resize",this.change)
     
-    return (
-        <UserConsumer>
-            {
-                value=>{
-                    const {isOpen,side} = value;
-                    const {screen} = this.state;
-                    window.addEventListener("resize",this.change)
-                    
-                    return(
-                      
-                        
-                     
-                        <div className="  fixed-top d-flex sidebar " 
-                        style={screen<576?{width:`${this.sideBarOpen(isOpen)}%`}:{width:"15%"}}>
-                        
-                        <div className="navbar-nav px-2">
-                           {screen<576? <span className="navbar-brand mt-1 ml-auto" style={{color:"white",cursor:"pointer"}}
-                          onClick ={isOpen?side:null}>X</span>:null}
-                          <ul className="navbar-nav ml-auto ">
-                            <li className="nav-item " style={{marginTop:"100%"}}>
-                              <a href="/add"  >ADD USER</a><hr/>
-                            </li>
-                            <li className="nav-item ">
-                              <a href="/newUsers">NEW USERS</a><hr/>
-                            </li>
-                            <li className="nav-item ">
-                              <a href="/updatedUsers">UPDATED USERS</a><hr/>
-                            </li>
+    return(
+        <div className="  fixed-top d-flex sidebar " 
+        style={screen<578?{width:`${this.sideBarOpen(isOpen)}%`}:{width:"15%"}}>
+        
+        <div className="navbar-nav px-2">
+        <span className="navbar-brand mt-1 ml-auto d-sm-none" style={{color:"white",cursor:"pointer"}}
+          onClick ={isOpen?side:null}>X</span>
+          <ul className="navbar-nav ml-auto ">
+            <li className="nav-item " style={{marginTop:"100%"}}>
+              <Link to="/add"  >ADD USER</Link><hr/>
+            </li>
+            <li className="nav-item ">
+              <Link to="/newUsers">NEW USERS</Link><hr/>
+            </li>
+            <li className="nav-item ">
+              <Link to="/updatedUsers">UPDATED USERS</Link><hr/>
+            </li>
 
-                            <li className="nav-item" style={{marginTop:"40%"}}>
-                              <a href="/trashbox" >TRASH BOX</a>
-                            </li>
-                          </ul>
-                          </div>  
-                        </div>
-                        
-                    
-                      
-
-                        
-                    )
-                }
-            }
-        </UserConsumer>
-  
+            <li className="nav-item" style={{marginTop:"40%"}}>
+              <Link to="/trashbox" >TRASH BOX</Link>
+            </li>
+          </ul>
+          </div>  
+        </div> 
     )
   }
 }
+const mapStateToProps = state => ({
+    
+  isOpen : state.isOpen.isOpen,
 
-export default SideNavbar;
+  
+  
+})
+
+const mapDispatchToProps = dispatch => ({
+  side : ()=> dispatch(side()),
+
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(SideNavbar);
+

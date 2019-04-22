@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // import posed from "react-pose"; animation için yüklenmişti
-import UserConsumer from "../context"
-import axios from "axios"
+import axios from "../layout/AxiosInstance"
+import {connect} from "react-redux"
+import {addUser} from "../store/actions"
 //var uniqid = require('uniqid');
 /* const Animation = posed.div({
     visible : {
@@ -24,7 +25,7 @@ class AddUser extends Component {
         visible : false,
         name : "",
         department :"",
-        salery : ""
+        salary : ""
     }
  /*changeVisibility = (e)=>{
         this.setState({
@@ -38,33 +39,30 @@ class AddUser extends Component {
  }
  // formlarda eklenen buton default olarak submit yapıp sayfayı yeniliyor.
  // Bunu e.preventDefault metodu ile engelliyebiliriz.
- addUser = async (dispatch ,loginUser,e) =>{
+ addUser =  (loginUser,e) =>{
      e.preventDefault();
-     const {name,department,salery} = this.state
+     const {name,department,salary} = this.state
      const newUser ={
         loginId :loginUser[0].id,
         name : name,
         department : department,
-        salery : salery,
+        salary : salary,
         creationDate : Date.now(),
-        updatedDate : Date.now(),
+        updatedDate : 0,
         isTrash : false
      }
      
-     const nwUsr = await axios.post("http://localhost:3004/users",newUser);
-
-     dispatch({type:"ADD_USER",payload:nwUsr.data});
+     axios.post("/users",newUser).then(resp =>this.props.addUser(resp.data) );
+     
+     
+    // dispatch({type:"ADD_USER",payload:nwUsr.data});
      this.props.history.push("/")
  
  }
 
   render() {
-    const {name,department,salery} = this.state
-    return(
-        <UserConsumer>
-            {
-                value =>{
-                    const {dispatch,loginUser} = value;
+    const {name,department,salary} = this.state;
+    const {loginUser} = this.props;
                     return (
       
                         <div className= "col-sm-6 col-12 mb-4 mx-auto">
@@ -100,19 +98,19 @@ class AddUser extends Component {
                                             />                        
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="salery">Salery</label>
+                                            <label htmlFor="salary">Salary</label>
                                             <input
                                             type = "text"
-                                            name = "salery"
-                                            id = "salery"
-                                            placeholder = "Enter Salery"
+                                            name = "salary"
+                                            id = "salary"
+                                            placeholder = "Enter Salary"
                                             className = "form-control"
-                                            value = {salery}
+                                            value = {salary}
                                             onChange ={this.changeInput}
                                             />                        
                                         </div>
                                            
-                                        <button className="btn btn-danger btn-block" onClick ={this.addUser.bind(this,dispatch,loginUser)}>ADD USER</button>
+                                        <button className="btn btn-danger btn-block" onClick ={this.addUser.bind(this,loginUser)}>ADD USER</button>
                                     </form>
                                 </div>
                 
@@ -120,14 +118,19 @@ class AddUser extends Component {
                         </div>
                       
                     )
-                }
-            }
-        </UserConsumer>
-    )
     
   }
 }
-export default AddUser;
+const mapStateToProps = state => ({
+    loginUser : state.loginUser.loginUser
+  })
+  
+  const mapDispatchToProps = dispatch => ({
+    addUser : newUser=> dispatch(addUser(newUser)),
+   // getLogin : () => dispatch(getLogin())
+  
+  })
+export default connect(mapStateToProps,mapDispatchToProps)(AddUser);
 
 
 

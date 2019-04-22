@@ -2,8 +2,15 @@ import {createStore ,applyMiddleware, compose,combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer';
 
+
 const rootReducer = combineReducers({
-    users:reducer
+    users : reducer,
+    status : reducer,
+    loginUser : reducer,
+    isOpen : reducer,
+    
+
+
 })
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

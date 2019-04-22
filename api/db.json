@@ -3,7 +3,7 @@
     {
       "name": "Şükriye",
       "department": "Biyoloji",
-      "salery": "4600",
+      "salary": "4600",
       "isTrash": false,
       "loginId": "Z",
       "creationDate": 1555521479200,
@@ -13,69 +13,242 @@
     {
       "name": "Sefa",
       "department": "bilişim",
-      "salery": "4500",
+      "salary": "5500",
       "isTrash": false,
       "loginId": "Z",
       "creationDate": 1555521479200,
-      "updatedDate": "",
+      "updatedDate": 1555840279125,
       "id": "GDzzXjQ"
     },
     {
       "loginId": "Z",
-      "name": "Ramazan",
+      "name": "sema",
+      "department": "finans",
+      "salary": "2850",
+      "creationDate": 1555708890611,
+      "updatedDate": 1555762473807,
+      "isTrash": false,
+      "id": "q6CMOd1"
+    },
+    {
+      "loginId": "Z",
+      "name": "selim",
+      "department": "tesisat",
+      "salary": "3500",
+      "creationDate": 1555708905135,
+      "updatedDate": 1555763328457,
+      "isTrash": false,
+      "id": "hX0XtVB"
+    },
+    {
+      "loginId": "Z",
+      "name": "mahmut",
+      "department": "inşaat",
+      "salary": "3500",
+      "creationDate": 1555753055730,
+      "updatedDate": 0,
+      "isTrash": false,
+      "id": "r5N9UmY"
+    },
+    {
+      "loginId": "Z",
+      "name": "",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555764468682,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "Oo4BIDI"
+    },
+    {
+      "loginId": "Z",
+      "name": "dfs",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555764502739,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "vRF4W__"
+    },
+    {
+      "loginId": "Y",
+      "name": "Sefa",
       "department": "Bilişim",
-      "salery": "3500",
-      "creationDate": 1555521479200,
-      "updatedDate": 1555535401779,
-      "id": "7lCTHL6",
-      "isTrash": false
+      "salary": "4500",
+      "creationDate": 1555840184497,
+      "updatedDate": 1555840227707,
+      "isTrash": false,
+      "id": "NsfsdXY"
     },
     {
       "loginId": "Y",
-      "name": "Mustafa",
-      "department": "Tıp",
-      "salery": "6000",
-      "creationDate": 1555521479200,
-      "updatedDate": "",
-      "id": "O8svNoF"
+      "name": "mahhmut",
+      "department": "lojistik",
+      "salary": "3150",
+      "creationDate": 1555840336763,
+      "updatedDate": 1555840378711,
+      "isTrash": false,
+      "id": "6t1Q_Su"
     },
     {
       "loginId": "Y",
-      "name": "Ramazan",
-      "department": "Bilişim",
-      "salery": "3500",
-      "creationDate": 1555521479200,
-      "updatedDate": "",
-      "id": "rvw5lmr"
+      "name": "",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555840736085,
+      "updatedDate": 0,
+      "isTrash": false,
+      "id": "Y1FlCXk"
     },
     {
-      "loginId": "Y",
-      "name": "Ayşe",
-      "department": "Tekstil",
-      "salery": "3300",
-      "creationDate": 1555521479200,
-      "updatedDate": 1555600886002,
-      "id": "mz4miBC",
-      "isTrash": false
+      "loginId": "Z",
+      "name": "",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555845299786,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "6Jor-sR"
     },
     {
-      "loginId": "Y",
-      "name": "Fatma",
-      "department": "İK",
-      "salery": "3000",
-      "creationDate": 1555521479200,
-      "updatedDate": "",
-      "id": "xaSXMKl"
+      "loginId": "Z",
+      "name": "fatih mehmet",
+      "department": "havacılık",
+      "salary": "8500",
+      "creationDate": 1555853712437,
+      "updatedDate": 1555854502696,
+      "isTrash": false,
+      "id": "t9sR5uk"
     },
     {
-      "loginId": "Y",
-      "name": "Ahmet",
-      "department": "İnşaat",
-      "salery": "4500",
-      "creationDate": 1555521479200,
-      "updatedDate": "",
-      "id": "UKMaGAM",
-      "isTrash": false
+      "loginId": "Z",
+      "name": "mehmet",
+      "department": "havacılık",
+      "salary": "8500",
+      "creationDate": 1555853714397,
+      "updatedDate": 0,
+      "isTrash": false,
+      "id": "FvkIYYZ"
+    },
+    {
+      "loginId": "Z",
+      "name": "murtaza",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555853785171,
+      "updatedDate": 1555855091726,
+      "isTrash": false,
+      "id": "DKeicqL"
+    },
+    {
+      "loginId": "Z",
+      "name": "aaa",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555853804645,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "YEdFTt0"
+    },
+    {
+      "loginId": "Z",
+      "name": "aaa",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854085024,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "VaNxpax"
+    },
+    {
+      "loginId": "Z",
+      "name": "bbb",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854121761,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "QRWIfTN"
+    },
+    {
+      "loginId": "Z",
+      "name": "ccc",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854149161,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "Li3Ln7d"
+    },
+    {
+      "loginId": "Z",
+      "name": "ddd",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854158853,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "9r0ztAQ"
+    },
+    {
+      "loginId": "Z",
+      "name": "eee",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854226096,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "sRJvfem"
+    },
+    {
+      "loginId": "Z",
+      "name": "fff",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854306252,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "AXooxBL"
+    },
+    {
+      "loginId": "Z",
+      "name": "gg",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854317556,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "W2lDt6J"
+    },
+    {
+      "loginId": "Z",
+      "name": "aaa",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854401065,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "Q0UBwy0"
+    },
+    {
+      "loginId": "Z",
+      "name": "sdffds",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555854890443,
+      "updatedDate": 0,
+      "isTrash": true,
+      "id": "7Y8UMg4"
+    },
+    {
+      "loginId": "Z",
+      "name": "",
+      "department": "",
+      "salary": "",
+      "creationDate": 1555858197270,
+      "updatedDate": 0,
+      "isTrash": false,
+      "id": "g80LrnE"
     }
   ],
   "savedUsers": [
@@ -88,7 +261,123 @@
       "userName": "SEFA",
       "password": "2827",
       "id": "Y"
+    },
+    {
+      "userName": "SUKRIYE",
+      "password": "1111",
+      "id": "0oyaj_0"
+    },
+    {
+      "userName": "ss",
+      "password": "ss",
+      "id": "-cpcHTQ"
+    },
+    {
+      "userName": "mm",
+      "password": "1234",
+      "id": "s1KWr3i"
+    },
+    {
+      "userName": "mm",
+      "password": "1234",
+      "id": "9BCgxOO"
+    },
+    {
+      "userName": "rtr",
+      "password": "1",
+      "id": "TzIlbDc"
+    },
+    {
+      "userName": "aa",
+      "password": "a",
+      "id": "D48aYtk"
+    },
+    {
+      "userName": "s",
+      "password": "ss",
+      "id": "z4kmVmF"
+    },
+    {
+      "userName": "aaa",
+      "password": "aaa",
+      "id": "fB-B2oH"
+    },
+    {
+      "userName": "aaa",
+      "password": "aaa",
+      "id": "c_Oym8y"
+    },
+    {
+      "userName": "aaa",
+      "password": "aaa",
+      "id": "v-n_UPb"
+    },
+    {
+      "userName": "aaa",
+      "password": "aaa",
+      "id": "ApB5eha"
+    },
+    {
+      "userName": "rtr",
+      "password": "aaaa",
+      "id": "s9V0e8T"
+    },
+    {
+      "userName": "rtr",
+      "password": "aaa",
+      "id": "uEOn0uO"
+    },
+    {
+      "userName": "rtr",
+      "password": "q",
+      "id": "EN4veRG"
+    },
+    {
+      "userName": "rtr",
+      "password": "q",
+      "id": "97NF-E0"
+    },
+    {
+      "userName": "rtr",
+      "password": "q",
+      "id": "-vvfkT9"
+    },
+    {
+      "userName": "rtr",
+      "password": "qq",
+      "id": "KeO2xHW"
+    },
+    {
+      "userName": "",
+      "password": "",
+      "id": "4B_IfD7"
+    },
+    {
+      "userName": "",
+      "password": "",
+      "id": "ekZzgr1"
+    },
+    {
+      "userName": "saa",
+      "password": "s",
+      "id": "z9s8u-W"
+    },
+    {
+      "userName": "aa",
+      "password": "12",
+      "id": "2uEOlYI"
+    },
+    {
+      "userName": "vv",
+      "password": "v",
+      "id": "cTuFqVb"
     }
   ],
-  "loginUser": []
+  "loginUser": [
+    {
+      "userName": "RAMAZAN",
+      "password": "2816",
+      "id": "Z"
+    }
+  ]
 }
