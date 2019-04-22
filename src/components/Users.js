@@ -12,8 +12,11 @@ import { connect } from 'react-redux';
   }
   render() {
       
-      const {users,loginUser,status} = this.props;
-      
+      const {users,loginUser, usersLoading } = this.props;
+    // usersLoading ise loading  
+    // liste boşsa "bulunamadı hatası"
+    // en son listemiz
+
       return (
         <div className="col-12 mt-2">
           <div className="col-12 col-sm-6 mx-auto ">
@@ -21,10 +24,8 @@ import { connect } from 'react-redux';
               ALL USERS
             </h1>
             </div>
-        
-                  
 
-        { status !== 200 ?
+        { usersLoading ?
             <div className="col-12 col-sm-6 mx-auto ">
                 <div className="spinner-border" role="status">
                   <span className="sr-only">Loading...</span>
@@ -61,6 +62,7 @@ const mapStateToProps = state => ({
   loginUser : state.loginUser.loginUser,
   status : state.status.status,
   isOpen : state.isOpen.isOpen,
+  usersLoading: state.loading['USERS']
   
   
 })
