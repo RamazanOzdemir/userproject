@@ -16,11 +16,6 @@ export default (state = initialState,action) => {
             loginUser : action.loginUser
            
         } 
-        case "DELETE_TRASH" : 
-        return{
-          ...state,
-          list : state.list.filter(user =>user.id !== action.id)
-        }
        case "SIDE":
        return  {
             ...state,

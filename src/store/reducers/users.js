@@ -1,6 +1,6 @@
 //action type ları string yerine actionTypes içinden import edeceğiz.
 
-import { USERS_SUCCESS } from "../actions/actionTypes";
+import { USERS_SUCCESS,DELETE_SUCCESS ,TRASH_SUCCESS,RELOAD_SUCCESS,ADD_SUCCESS,UPDATE_SUCCESS} from "../actions/actionTypes";
 
 const initialState = {
     list : [],
@@ -17,25 +17,30 @@ export default (state = initialState,action) => {
             status:action.status,
            
         }     
-        case "DELETE_USER":    
+        case DELETE_SUCCESS:    
         return{
          ...state,
          list : state.list.map(user=>user.id===action.id?{...user,isTrash:true}: user)
         }
-        case "RELOAD_USER" :
+        case RELOAD_SUCCESS :
         return {
           ...state,
           list : state.list.map(user=>user.id===action.id? {...user,isTrash:false} : user)
         }
-        case "UPDATE_USER":
+        case UPDATE_SUCCESS:
         return {
           ...state,
-          list : state.list.map(user =>user.id === action.payload.id?action.payload : user)
+          list : state.list.map(user =>user.id === action.newUser.id?action.newUser : user)
         }
-        case "ADD_USER":
-        return  {
+        case ADD_SUCCESS:
+        return {
           ...state,
           list : [...state.list,action.newUser]}
+        case TRASH_SUCCESS : 
+        return {
+          ...state,
+          list : state.list.filter(user =>user.id !== action.id)
+        }
        default :
        return state
     } 

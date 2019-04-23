@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
   loginUser : state.loginUser.loginUser,
   status : state.status.status,
   isOpen : state.isOpen.isOpen,
-  usersLoading: state.loading['USERS']
+  usersLoading: state.loading['USERS'] 
   
   
 })

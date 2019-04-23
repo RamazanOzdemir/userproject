@@ -15,12 +15,7 @@ export const getLogin = () => dispatch => {
      
 }
 
-export const deleteTrash = (id) => dispatch => {
-    dispatch({
-        type:'DELETE_TRASH',
-        id
-    })
-}
+
 
 export const side = ()=> dispatch => {
     dispatch({

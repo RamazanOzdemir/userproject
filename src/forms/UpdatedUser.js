@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-
-import axios from "../layout/AxiosInstance"
 import {connect} from "react-redux"
-import {updatedUser} from "../store/actions"
+import {updatedUser,getUsers} from "../store/actions"
 class UpdatedUser extends Component {
     state = {
-        
+
         name : "",
         department :"",
         salary : ""
@@ -18,11 +16,23 @@ class UpdatedUser extends Component {
  }
  // formlarda eklenen buton default olarak submit yapıp sayfayı yeniliyor.
  // Bunu e.preventDefault metodu ile engelliyebiliriz.
+ componentWillReceiveProps =()=>{
+    const {id} = this.props.match.params;
+    const {users} = this.props
+    const user = users.filter(user=>user.id===id)
+    const willUpdate = user[0]
+    if(willUpdate!==undefined)
+    this.setState({
+        name : willUpdate.name,
+        salary : willUpdate.salary,
+        department : willUpdate.department
+    })
+ }
  updateUser =  (e) =>{
      e.preventDefault();
      const {name,department,salary} = this.state;
      const {id}=this.props.match.params;
-     
+     const {updateLoading} = this.props
      const newUser ={
         id : id,
         name : name,
@@ -31,26 +41,25 @@ class UpdatedUser extends Component {
         updatedDate : Date.now()
      }
      
-     axios.patch(`/users/${id}`,newUser).then(resp => this.props.updatedUser(resp.data));
+     this.props.updatedUser(newUser);
 
     // dispatch({type:"UPDATE_USER",payload:nwUsr.data});
-     
+     if(!updateLoading)
      this.props.history.push("/")
       
       
  }
- componentDidMount = async ()=>{
-     const {id} = this.props.match.params;
-     const response = await axios.get(`http://localhost:3004/users/${id}`);
-     const {name,department,salary} = response.data
-     this.setState({
-         name ,
-         department ,
-         salary
-     });
+
+ componentDidMount =  ()=>{
+     this.props.getUsers()
+ 
+ 
  }
+
   render() {
     const {name,department,salary} = this.state
+    const {updateLoading} = this.props
+
     return (
       
         <div className= "col-sm-6 col-12 mb-4 mx-auto">
@@ -98,7 +107,8 @@ class UpdatedUser extends Component {
                             />                        
                         </div>
                     
-                        <button className="btn btn-danger btn-block" onClick ={this.updateUser}>UPDATE USER</button>
+                        <button className="btn btn-danger btn-block" onClick ={this.updateUser}
+                        disabled={updateLoading}>UPDATE USER</button>
                     </form>
                 </div>
 
@@ -110,11 +120,14 @@ class UpdatedUser extends Component {
   }
 }
 const mapStateToProps = state => ({
-    
+    users : state.users.list,
+    updateLoading : state.loading["UPDATE"]
   })
   
   const mapDispatchToProps = dispatch => ({
     updatedUser : newUser=> dispatch(updatedUser(newUser)),
+    getUsers: () => dispatch(getUsers())
+    
   
   })
 export default connect(mapStateToProps,mapDispatchToProps)(UpdatedUser);

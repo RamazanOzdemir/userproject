@@ -9,7 +9,7 @@ import {connect} from "react-redux";
     
   }
   render() {
-    const {users,status,loginUser} = this.props;
+    const {users,usersLoading,loginUser} = this.props;
     const x = Date.now()-86400000;
      return (
          <div className ="col-12 mt-2">
@@ -19,10 +19,12 @@ import {connect} from "react-redux";
            {
                
                
-                 status !== 200?
-                  <div className="spinner-border d-flex" role="status">
-                   <span className="sr-only mx-auto">Loading...</span>
-                   </div>
+               usersLoading?
+               <div className="col-12 col-sm-6 mx-auto ">
+                 <div className="spinner-border" role="status">
+                   <span className="sr-only">Loading...</span>
+                 </div>
+               </div>
                  :    
                users.filter(user=>!user.isTrash&&user.loginId===loginUser[0].id&&user.creationDate>x).map(user=>{
                  
@@ -47,7 +49,7 @@ import {connect} from "react-redux";
 const mapStateToProps = state => ({
   users : state.users.list,
   loginUser : state.loginUser.loginUser,
-  status :state.status.status
+  usersLoading: state.loading['USERS'] 
 })
 
 const mapDispatchToProps = dispatch => ({

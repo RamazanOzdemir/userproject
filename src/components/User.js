@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import axios from "../layout/AxiosInstance"
 import { connect } from 'react-redux';
-import { deleteUser,deleteTrash,reloadUser } from '../store/actions';
+import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
 
 //import PropTypes from 'prop-types'
 
@@ -23,28 +22,30 @@ import { deleteUser,deleteTrash,reloadUser } from '../store/actions';
       
   }
   onReLoad = (e)=>{
-    const {id} = this.props;
+    const {id,reLoading} = this.props;
+     if(!reLoading)
      this.props.reloadUser(id)
     //dispatch({type : "RELOAD_USER", payload : id});
-    axios.patch(`users/${id}`,{isTrash:false}).catch(console.error())
+   // axios.patch(`users/${id}`,{isTrash:false}).catch(console.error())
   }
   onDeleteUser = async (e)=>{
-      const {id,isTrash} = this.props;
+      const {id,isTrash,deleteLoading,trashLoading} = this.props;
       let isOK = false;
       
       
-      !isTrash?  isOK=window.confirm("Bu user' çöp kutusuna taşımak istiyor musunuz?").valueOf()
-              : isOK=window.confirm("Bu user' çöp kutusundan kalıcı olarak silmek istiyor musunuz?").valueOf()
+      !isTrash?  isOK=window.confirm("Bu user'ı çöp kutusuna taşımak istiyor musunuz?").valueOf()
+              : isOK=window.confirm("Bu user'ı çöp kutusundan kalıcı olarak silmek istiyor musunuz?").valueOf()
      
-     if(isOK&&isTrash){
-      this.props.deleteTrash(id)
+     if(isOK&&isTrash&&!trashLoading){
+      this.props.deleteTrashUser(id)
+     
       //dispatch({type : "DELETE_TRASH", payload : id})
-      fetch(`http://localhost:3004/users/${id}`,{method: 'DELETE'}).catch(console.error())
+      //fetch(`http://localhost:3004/users/${id}`,{method: 'DELETE'}).catch(console.error())
     }
-     else if(isOK){
+     else if(isOK&&!deleteLoading){
       this.props.deleteUser(id);
       
-     axios.patch(`users/${id}`,{isTrash:true}).catch(console.error())
+     //axios.patch(`users/${id}`,{isTrash:true}).catch(console.error())
      }
 
   }
@@ -53,7 +54,7 @@ import { deleteUser,deleteTrash,reloadUser } from '../store/actions';
       //Destructing
       const {id,name,salary,department,isTrash} = this.props;
       const {isVisible} = this.state;
-      
+  
       return(
         <div className="col-10 col-sm-4 mb-4 mx-auto ">
         {             
@@ -64,7 +65,9 @@ import { deleteUser,deleteTrash,reloadUser } from '../store/actions';
                      {isTrash? <i className="fas fa-cloud-upload-alt" onClick = {this.onReLoad} style={{cursor:"pointer"}}></i>
                       :null 
                     }
-                      <i className="fas fa-trash-alt ml-1" onClick = {this.onDeleteUser} style={{cursor:"pointer"}}></i>      
+                      <i className="fas fa-trash-alt ml-1" 
+                      onClick = {this.onDeleteUser} style={{cursor:"pointer"}}
+                     ></i>      
                     </div>
                 </div>
                 {
@@ -86,12 +89,15 @@ import { deleteUser,deleteTrash,reloadUser } from '../store/actions';
   }
  }
  const mapStateToProps = state => ({
-  status : state.status.status
+  status : state.status.status,
+  deleteLoading : state.loading["DELETE"],
+  trashLoading : state.loading["TRASH"],
+  reLoading : state.loading["RELOAD"]
 })
 
 const mapDispatchToProps = dispatch => ({
   deleteUser : id => dispatch(deleteUser(id)),
-  deleteTrash : id => dispatch(deleteTrash(id)),
+  deleteTrashUser : id => dispatch(deleteTrashUser(id)),
   reloadUser : id => dispatch(reloadUser(id))
 })
 export default connect(mapStateToProps,mapDispatchToProps) (User);

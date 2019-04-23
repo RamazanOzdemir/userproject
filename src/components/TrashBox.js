@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import User from "./User";
-import axios from "../layout/AxiosInstance";
+
 import { connect } from 'react-redux';
-import { deleteTrash ,reloadUser} from '../store/actions';
+import { deleteTrashUser ,reloadUser} from '../store/actions';
  class TrashBox extends Component {
   allDelete =  (users,e)=>{
+    const {deleteTrashUser} = this.props
     users.filter(user=>{return user.isTrash}).forEach  (user=>{
-       this.props.deleteTrash(user.id)
+      
+       deleteTrashUser(user.id)
       // dispatch({type:"DELETE_TRASH",payload :user.id})
-       axios.delete(`users/${user.id}`).then(resp=>console.log(`all kalıcı silme => ${resp.status}`)).catch(console.error())
+      // axios.delete(`users/${user.id}`).then(resp=>console.log(`all kalıcı silme => ${resp.status}`)).catch(console.error())
     })
   }
   allReload =  (e)=>{
-    const {users,loginUser}=this.props
+    const {users,loginUser,reloadUser} = this.props
     users.filter(user => user.isTrash&&user.loginId===loginUser[0].id).forEach  (user=>{
-      this.props.reloadUser(user.id)
-       axios.patch(`users/${user.id}`,{isTrash:false}).catch(console.error())
+      
+      reloadUser(user.id)
+       //axios.patch(`users/${user.id}`,{isTrash:false}).catch(console.error())
     })
   }
   componentDidMount = ()=>{
@@ -71,7 +74,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   //getUsers: () => dispatch(getUsers()),
   //getLogin : () => dispatch(getLogin()),
-  deleteTrash: id => dispatch(deleteTrash(id)),
+  deleteTrashUser: id => dispatch(deleteTrashUser(id)),
   reloadUser : id => dispatch(reloadUser(id))
 })
 export default connect(mapStateToProps,mapDispatchToProps)(TrashBox);
