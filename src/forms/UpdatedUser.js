@@ -42,12 +42,8 @@ class UpdatedUser extends Component {
      }
      
      this.props.updatedUser(newUser);
-
-    // dispatch({type:"UPDATE_USER",payload:nwUsr.data});
      if(!updateLoading)
      this.props.history.push("/")
-      
-      
  }
 
  componentDidMount =  ()=>{

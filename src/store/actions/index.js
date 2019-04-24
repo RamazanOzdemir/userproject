@@ -3,5 +3,7 @@
 
 //bu dosya içinde de diğer actionlaradaki exportları kısaca hem import hem export etmiş oluyoruz.
 
-export * from './actions';
+export * from './sideActions';
 export * from './user';
+export * from './authActions';
+export * from './signinActions';

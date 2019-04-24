@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import posed from "react-pose"; animation için yüklenmişti
 import {connect} from "react-redux"
 import {addUser} from "../store/actions"
-//var uniqid = require('uniqid');
+
 /* const Animation = posed.div({
     visible : {
         opacity : 1,
@@ -26,11 +26,7 @@ class AddUser extends Component {
         department :"",
         salary : ""
     }
- /*changeVisibility = (e)=>{
-        this.setState({
-            visible : !this.state.visible
-        });
-    }*/
+    
  changeInput = (e)=>{
      this.setState({
         [ e.target.name] : e.target.value
@@ -53,9 +49,6 @@ class AddUser extends Component {
      }
      if(!addLoading)
     this.props.addUser(newUser);
-     
-     
-    // dispatch({type:"ADD_USER",payload:nwUsr.data});
      this.props.history.push("/")
  
  }
@@ -129,7 +122,6 @@ const mapStateToProps = state => ({
   
   const mapDispatchToProps = dispatch => ({
     addUser : newUser=> dispatch(addUser(newUser)),
-   // getLogin : () => dispatch(getLogin())
   
   })
 export default connect(mapStateToProps,mapDispatchToProps)(AddUser);

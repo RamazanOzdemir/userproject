@@ -1,60 +1,49 @@
 import React, { Component } from 'react';
-import axios from "./layout/AxiosInstance";
 import { connect } from 'react-redux';
-import {userCheck} from './store/actions';
+import {userCheck,getSavedUser,setSavedUser} from './store/actions';
 
 class Login extends Component {
-    state = {
+  state = {
         sign : false,
-        savedUsers : [],
         userName : "",
         password :"",
         
-    }
-    changeInput = (e)=>{
+  }
+    
+  changeInput = (e)=>{
         this.setState({
            [ e.target.name] : e.target.value
         })
-    }
-    check =(e) =>{
-        e.preventDefault();
-        const {userName,password,savedUsers} = this.state
-        
-        const isTrue = savedUsers.filter(user=>{
-            
-            
-          return user.userName===userName&&user.password===password})
-        
-        if(isTrue.length){
-            //dispatch({type:"USER_CHECKED",payload :isTrue})
-            
-            
-        axios.post(`/loginUser/`,isTrue[0]).then(resp => this.props.userCheck(resp.data));
-        }
-        else alert("Please check your username and password!")
+  }
+
+  check =(e) =>{
+    e.preventDefault();
+    const {userName,password} = this.state
+    const {savedUsers} = this.props
+    const isTrue = savedUsers.filter(user=>user.userName===userName&&user.password===password)
+
+    if(isTrue.length)
+      this.props.userCheck(isTrue[0])
+    else alert("Please check your username and password!")
   
-    }
-    signin = (e) =>{
+  }
+
+  signin = (e) =>{
       e.preventDefault();
       const {userName,password} = this.state
        const newSavedUser ={userName,password}
-        axios.post(`/savedUsers/`,newSavedUser)
-        .then(resp=>this.setState({savedUsers:[...this.state.savedUsers,resp.data], sign:false}))
-      
-       
-          
-            //this.setState({sign:false})
-  }
+      this.props.setSavedUser(newSavedUser);
+      this.setState(()=>({sign:false})) 
+  }      
+
   openSigninPage = (e)=>{
     this.setState({sign:true})
   }
-    componentDidMount = ()=>{
-      
-        axios.get("/savedUsers").then(resp=>{
-            this.setState({savedUsers:resp.data})})
-           
-    
-    }
+
+  componentDidMount = ()=>{
+      this.props.getSavedUser();       
+  }
+
   render() {
     const {userName,password,sign} = this.state
     return(
@@ -126,11 +115,13 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  
+  savedUsers : state.saved.savedUsers
 })
 
 const mapDispatchToProps = dispatch => ({
   userCheck : user=> dispatch(userCheck(user)),
+  getSavedUser : () => dispatch(getSavedUser()),
+  setSavedUser : user => dispatch(setSavedUser(user)) 
 
 
 })

@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
 import User from "./User";
 import { connect } from 'react-redux';
-//import { getUsers } from '../store/actions';
+
 
  class Users extends Component {
-  componentDidMount(){
-   // this.props.getUsers();
-    //this.props.getLogin();
- 
-    
-  }
+
   render() {
       
       const {users,loginUser, usersLoading } = this.props;
@@ -32,7 +27,6 @@ import { connect } from 'react-redux';
                        </div></div>
           : 
          
-            //&&user.loginId === loginUser[0].id
             users.filter(user => !user.isTrash&&user.loginId === loginUser[0].id )
               .map(user => {
                 
@@ -60,16 +54,10 @@ import { connect } from 'react-redux';
 const mapStateToProps = state => ({
   users : state.users.list,
   loginUser : state.loginUser.loginUser,
-  status : state.status.status,
   isOpen : state.isOpen.isOpen,
   usersLoading: state.loading['USERS'] 
   
   
 })
 
-const mapDispatchToProps = dispatch => ({
- // getUsers: () => dispatch(getUsers()),
-  //getLogin : () => dispatch(getLogin())
-
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps)(Users);

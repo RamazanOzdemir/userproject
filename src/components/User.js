@@ -3,18 +3,12 @@ import {Link} from "react-router-dom";
 import { connect } from 'react-redux';
 import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
 
-//import PropTypes from 'prop-types'
-
 
  class User extends Component {
      state = {
          isVisible : false
      }
-     //constructor (props){
-      //   super(props);
-       //  this.onClickEvent = this.onClickEvent.bind(this);
-         
-     //}
+
   onClickEvent = (e) =>{
       this.setState({
           isVisible : !this.state.isVisible
@@ -25,8 +19,7 @@ import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
     const {id,reLoading} = this.props;
      if(!reLoading)
      this.props.reloadUser(id)
-    //dispatch({type : "RELOAD_USER", payload : id});
-   // axios.patch(`users/${id}`,{isTrash:false}).catch(console.error())
+   
   }
   onDeleteUser = async (e)=>{
       const {id,isTrash,deleteLoading,trashLoading} = this.props;
@@ -39,13 +32,10 @@ import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
      if(isOK&&isTrash&&!trashLoading){
       this.props.deleteTrashUser(id)
      
-      //dispatch({type : "DELETE_TRASH", payload : id})
-      //fetch(`http://localhost:3004/users/${id}`,{method: 'DELETE'}).catch(console.error())
     }
      else if(isOK&&!deleteLoading){
       this.props.deleteUser(id);
       
-     //axios.patch(`users/${id}`,{isTrash:true}).catch(console.error())
      }
 
   }
@@ -89,7 +79,6 @@ import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
   }
  }
  const mapStateToProps = state => ({
-  status : state.status.status,
   deleteLoading : state.loading["DELETE"],
   trashLoading : state.loading["TRASH"],
   reLoading : state.loading["RELOAD"]

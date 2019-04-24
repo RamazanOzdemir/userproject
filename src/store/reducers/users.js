@@ -10,7 +10,7 @@ const initialState = {
 export default (state = initialState,action) => {
     switch (action.type){
 
-        case USERS_SUCCESS: //reducer lara verileri sadece success durumunda gönderiyoruz. fail veya request bu kısımda bizi ilgilendirmiyor
+        case USERS_SUCCESS: 
         return {
             ...state,
             list : action.users,

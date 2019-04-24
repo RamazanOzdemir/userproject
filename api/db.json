@@ -32,16 +32,6 @@
     },
     {
       "loginId": "Z",
-      "name": "selim",
-      "department": "tesisat",
-      "salary": "3500",
-      "creationDate": 1555708905135,
-      "updatedDate": 1555763328457,
-      "isTrash": true,
-      "id": "hX0XtVB"
-    },
-    {
-      "loginId": "Z",
       "name": "mahmut can",
       "department": "inşaat",
       "salary": "3500",
@@ -101,34 +91,44 @@
       "id": "FvkIYYZ"
     },
     {
-      "loginId": "Z",
-      "name": "",
-      "department": "",
-      "salary": "",
-      "creationDate": 1556058475119,
-      "updatedDate": 0,
+      "loginId": "A3RtZ_p",
+      "name": "ismail",
+      "department": "mühendis",
+      "salary": "20000",
+      "creationDate": 1556103202876,
+      "updatedDate": 1556103289848,
       "isTrash": false,
-      "id": "MolxgY_"
+      "id": "hCmj7gM"
     },
     {
-      "loginId": "Z",
-      "name": "",
-      "department": "",
-      "salary": "",
-      "creationDate": 1556059525490,
-      "updatedDate": 0,
+      "loginId": "A3RtZ_p",
+      "name": "kemal",
+      "department": "siyaset",
+      "salary": "5000",
+      "creationDate": 1556103210607,
+      "updatedDate": 1556103272411,
       "isTrash": false,
-      "id": "yGhT0qJ"
+      "id": "mSOKany"
     },
     {
-      "loginId": "Z",
+      "loginId": "A3RtZ_p",
+      "name": "mahmut",
+      "department": "",
+      "salary": "",
+      "creationDate": 1556103217722,
+      "updatedDate": 1556103254657,
+      "isTrash": false,
+      "id": "niZV3KY"
+    },
+    {
+      "loginId": "A3RtZ_p",
       "name": "",
       "department": "",
       "salary": "",
-      "creationDate": 1556059531622,
+      "creationDate": 1556103466179,
       "updatedDate": 0,
       "isTrash": false,
-      "id": "WdMtFWu"
+      "id": "VzdkJnR"
     }
   ],
   "savedUsers": [
@@ -251,13 +251,22 @@
       "userName": "vv",
       "password": "v",
       "id": "cTuFqVb"
-    }
-  ],
-  "loginUser": [
+    },
+    {
+      "userName": "SUKU",
+      "password": "17",
+      "id": "yH_3Ga4"
+    },
+    {
+      "userName": "s",
+      "password": "s",
+      "id": "9H1Oh_x"
+    },
     {
       "userName": "RAMAZAN",
-      "password": "2816",
-      "id": "Z"
+      "password": "1",
+      "id": "A3RtZ_p"
     }
-  ]
+  ],
+  "loginUser": []
 }

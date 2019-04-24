@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import User from "./User";
 import {connect} from "react-redux";
-//import {getUsers} from "../store/actions"
+
  class NewUsers extends Component {
-  componentDidMount(){
-   // this.props.getUsers();
-    //this.props.getLogin();
-    
-  }
+
   render() {
     const {users,usersLoading,loginUser} = this.props;
     const x = Date.now()-86400000;
@@ -52,9 +48,4 @@ const mapStateToProps = state => ({
   usersLoading: state.loading['USERS'] 
 })
 
-const mapDispatchToProps = dispatch => ({
- // getUsers: () => dispatch(getUsers()),
- // getLogin : () => dispatch(getLogin())
-
-})
-export default connect(mapStateToProps,mapDispatchToProps)(NewUsers);
+export default connect(mapStateToProps)(NewUsers);

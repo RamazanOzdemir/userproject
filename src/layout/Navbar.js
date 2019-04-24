@@ -1,16 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import axios from "axios";
 import { connect } from 'react-redux';
-import { side } from '../store/actions';
+import { side,logOut } from '../store/actions';
 //import PropTypes from 'prop-types'
 
 
 const Navbar = (props)=>{
     
     const logOut =(loginUser)=>{
-        
-        axios.delete(`http://localhost:3004/loginUser/${loginUser[0].id}`)
+        props.logOut(loginUser[0].id)
         window.href="/"
     }
     const {side,loginUser} = props
@@ -44,15 +42,11 @@ const Navbar = (props)=>{
 }
 const mapStateToProps = state => ({
     
-    loginUser : state.loginUser.loginUser,
-
-    
-    
-  })
+    loginUser : state.loginUser.loginUser
+})
   
-  const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     side : ()=> dispatch(side()),
-    //getLogin : () => dispatch(getLogin())
-  
-  })
-  export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+    logOut : id => dispatch(logOut(id))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
