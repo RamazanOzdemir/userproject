@@ -32,14 +32,13 @@ class AddUser extends Component {
         [ e.target.name] : e.target.value
      })
  }
- // formlarda eklenen buton default olarak submit yapıp sayfayı yeniliyor.
- // Bunu e.preventDefault metodu ile engelliyebiliriz.
+
  addUser =  (e) =>{
      e.preventDefault();
-     const {loginUser,addLoading} = this.props;
+     const {addLoading} = this.props;
      const {name,department,salary} = this.state
      const newUser ={
-        loginId :loginUser[0].id,
+        
         name : name,
         department : department,
         salary : salary,
@@ -116,7 +115,7 @@ class AddUser extends Component {
   }
 }
 const mapStateToProps = state => ({
-    loginUser : state.loginUser.loginUser,
+    //loginUser : state.loginUser.loginUser,
     addLoading : state.loading["ADD"]
   })
   

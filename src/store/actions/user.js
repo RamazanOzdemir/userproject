@@ -1,4 +1,5 @@
 import axios from "../../layout/AxiosInstance";
+import axi from "axios"
 import { USERS_REQUEST, USERS_SUCCESS, USERS_FAIL,
     DELETE_REQUEST,DELETE_SUCCESS,DELETE_FAIL ,
     TRASH_REQUEST,TRASH_SUCCESS,TRASH_FAIL,
@@ -8,14 +9,15 @@ import { USERS_REQUEST, USERS_SUCCESS, USERS_FAIL,
 
 //her bir request için standart _Request, _Success, _Fail fonksiyonlarımız ve action type larımıız var
 
-
+const url ='https://reactapp-47e67.firebaseio.com/users.json'
+const urlpatch ='https://reactapp-47e67.firebaseio.com/users/'
 const usersRequest = () => ({
     type:USERS_REQUEST
 })
 
-const usersSuccess = (users) => ({
+const usersSuccess = (user) => ({
     type: USERS_SUCCESS,
-    users
+    users : Object.entries(user)
 })
 
 const usersFail = () => ({
@@ -25,14 +27,15 @@ const usersFail = () => ({
 export const getUsers = () => dispatch => {
     dispatch(usersRequest()) // böylece loading['USERS'] true oldu
     
-    axios.get('/users')
+    axi.get(url)
+    .then(res=>dispatch(usersSuccess(res.data)))
+    .catch(dispatch(usersFail()))
+   /* axios.get('/users')
         .then(response=> dispatch(usersSuccess(response.data))) //loading['USERS'] false oldu
-        .catch(error=> dispatch(usersFail()))  //loading['USERS'] false oldu
+        .catch(error=> dispatch(usersFail()))  //loading['USERS'] false oldu*/
+
      
 }
-
-
-/////////////////////// buradan sonrası da standart yapıda olmalı
 
 // DELETE USER İÇİN 
 const deleteRequest = () => ({
@@ -50,7 +53,7 @@ const deleteFail = () => ({
 
 export const deleteUser = (id) => dispatch => {
     dispatch(deleteRequest())
-    axios.patch(`users/${id}`,{isTrash:true})
+    axi.patch(urlpatch+`${id}/.json`,{"isTrash":true})
     .then(resp=>dispatch(deleteSuccess(id)))
     .catch(error=>dispatch(deleteFail()))
 
@@ -70,7 +73,7 @@ const deleteTrashFail = () => ({
 })
 export const deleteTrashUser = (id) => dispatch => {
     dispatch(deleteTrashRequest())
-    axios.delete(`users/${id}`)
+    axi.delete(urlpatch+`${id}/.json`)
     .then(resp=>dispatch(deleteTrashSuccess(id)))
     .catch(error => dispatch(deleteTrashFail()))
   
@@ -93,19 +96,21 @@ const reloadFail = () => ({
 
 export const reloadUser = (id) => dispatch => {
     dispatch(reloadRequest())
-    axios.patch(`users/${id}`,{isTrash:false})
+    axi.patch(urlpatch+`${id}/.json`,{"isTrash":false})
     .then(resp => dispatch(reloadSuccess(id)))
     .catch(error => dispatch(reloadFail()))
  
 }
 
 // ADD USER
+
 const addRequest = () => ({
     type: ADD_REQUEST
 })
 
-const addSuccess = (newUser) => ({
+const addSuccess = (id,newUser) => ({
     type: ADD_SUCCESS,
+    id,
     newUser
 })
 
@@ -114,8 +119,8 @@ const addFail = () => ({
 })
 export const addUser = (newUser) => dispatch => {
     dispatch(addRequest())
-    axios.post("/users",newUser)
-    .then(resp =>dispatch(addSuccess(resp.data )))
+    axi.post(url,newUser)
+    .then(resp =>dispatch(addSuccess(resp.data.name,newUser)))
     .catch(error=>dispatch(addFail()))
 
 }
@@ -125,19 +130,24 @@ const updateRequest = () => ({
     type: UPDATE_REQUEST
 })
 
-const updateSuccess = (newUser) => ({
+const updateSuccess = (id,newUser) => ({
     type: UPDATE_SUCCESS,
-    newUser
+    id,
+    name : newUser.name,
+    department : newUser.department,
+    salary : newUser.salary,
+    updatedDate : newUser.updatedDate
 })
 
 const updateFail = () => ({
     type: UPDATE_FAIL
 })
 
-export const updatedUser = (newUser) => dispatch => {
+export const updatedUser = (id,newUser) => dispatch => {
+    console.log(newUser)
     dispatch(updateRequest())
-    axios.patch(`/users/${newUser.id}`,newUser)
-    .then(resp =>dispatch(updateSuccess(resp.data)))
+    axi.patch(urlpatch+`${id}/.json`,JSON.stringify(newUser))
+    .then(resp =>dispatch(updateSuccess(id,resp.data)))
     .catch(errror => dispatch(updateFail()))
 
 }

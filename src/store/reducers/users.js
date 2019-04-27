@@ -13,33 +13,32 @@ export default (state = initialState,action) => {
         case USERS_SUCCESS: 
         return {
             ...state,
-            list : action.users,
-            status:action.status,
+            list : action.users
            
         }     
         case DELETE_SUCCESS:    
         return{
          ...state,
-         list : state.list.map(user=>user.id===action.id?{...user,isTrash:true}: user)
+         list : state.list.map(user=>user[0]===action.id?[user[0],{...user[1],isTrash:true}]: user)
         }
         case RELOAD_SUCCESS :
         return {
           ...state,
-          list : state.list.map(user=>user.id===action.id? {...user,isTrash:false} : user)
+          list : state.list.map(user=>user[0]===action.id?[user[0],{...user[1],isTrash:false}]: user)
         }
         case UPDATE_SUCCESS:
         return {
           ...state,
-          list : state.list.map(user =>user.id === action.newUser.id?action.newUser : user)
+          list : state.list.map(user =>user[0] === action.id?[user[0],{...user[1],name:action.name,department:action.department,salary:action.salary,updatedDate:action.updatedDate}]: user)
         }
         case ADD_SUCCESS:
         return {
           ...state,
-          list : [...state.list,action.newUser]}
+          list : [...state.list,[action.id,action.newUser]]}
         case TRASH_SUCCESS : 
         return {
           ...state,
-          list : state.list.filter(user =>user.id !== action.id)
+          list : state.list.filter(user =>user[0] !== action.id)
         }
        default :
        return state

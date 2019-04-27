@@ -19,13 +19,14 @@ class UpdatedUser extends Component {
  componentWillReceiveProps =()=>{
     const {id} = this.props.match.params;
     const {users} = this.props
-    const user = users.filter(user=>user.id===id)
+    const user = users.filter(user=>user[0]===id)
     const willUpdate = user[0]
+    
     if(willUpdate!==undefined)
     this.setState({
-        name : willUpdate.name,
-        salary : willUpdate.salary,
-        department : willUpdate.department
+        name : willUpdate[1].name,
+        salary : willUpdate[1].salary,
+        department : willUpdate[1].department
     })
  }
  updateUser =  (e) =>{
@@ -34,14 +35,14 @@ class UpdatedUser extends Component {
      const {id}=this.props.match.params;
      const {updateLoading} = this.props
      const newUser ={
-        id : id,
+        
         name : name,
         department : department,
         salary : salary,
         updatedDate : Date.now()
      }
-     
-     this.props.updatedUser(newUser);
+     console.log(id)
+     this.props.updatedUser(id,newUser);
      if(!updateLoading)
      this.props.history.push("/")
  }
@@ -121,7 +122,7 @@ const mapStateToProps = state => ({
   })
   
   const mapDispatchToProps = dispatch => ({
-    updatedUser : newUser=> dispatch(updatedUser(newUser)),
+    updatedUser : (id,newUser)=> dispatch(updatedUser(id,newUser)),
     getUsers: () => dispatch(getUsers())
     
   

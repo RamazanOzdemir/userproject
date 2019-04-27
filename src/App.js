@@ -18,12 +18,12 @@ import {connect} from "react-redux";
 
 class App extends Component {
  componentDidMount = ()=>{
-   this.props.getLogin();
+   //this.props.getLogin();
    this.props.getUsers();
  }
   render() {    
-    const {loginUser} = this.props
-              
+    const {registered} = this.props
+              console.log(registered)
     return(
      <Router>
 
@@ -31,12 +31,14 @@ class App extends Component {
       
        {
          
-         loginUser.length===0?
+         !registered?
+         <Switch>
          <div className="container-fluid mt-5">
            <div className="row  justify-content-center my-5">
-             <Login/>
+             <Route exact path="/" component ={Login}/>
            </div>
          </div>
+         </Switch>
          :
          <div className="container-fluid">
          <div className="row" >
@@ -44,7 +46,7 @@ class App extends Component {
          <Navbar title = "HOME PAGE" />
          <div className="w-100  border myheader"/>
          <Switch>
-         <Route exact path="/" component ={Users}/>
+         <Route exact path="/home" component ={Users}/>
          <Route exact path="/add" component ={AddUser}/>
          <Route exact path="/update/:id" component ={UpdatedUser}/>
          <Route exact path="/trashbox" component ={TrashBox}/>
@@ -64,12 +66,12 @@ class App extends Component {
 }
 const mapStateToProps = state => ({
 
-  loginUser : state.loginUser.loginUser
+  registered : state.loginUser["registered"]
 })
 
 const mapDispatchToProps = dispatch => ({
 
-  getLogin : () => dispatch(getLogin()),
+ // getLogin : () => dispatch(getLogin()),
   getUsers : () => dispatch(getUsers())
  
 })

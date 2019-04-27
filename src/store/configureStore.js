@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import loadingReducer from './reducers/loading';
 import usersReducer from './reducers/users';
 import authReducer from './reducers/auth';
-import signinReducer from './reducers/signin'
+import signinReducer from './reducers/signup'
 import sideReducer from './reducers/side'
 
 // reducerleri türüne göre ayır.

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {userCheck,getSavedUser,setSavedUser} from './store/actions';
-
+import {userCheck,setSavedUser} from './store/actions';
+//import axios from "axios" 
 class Login extends Component {
   state = {
         sign : false,
-        userName : "",
+        email : "",
         password :"",
+        registered :"",
         
   }
     
@@ -18,20 +19,23 @@ class Login extends Component {
 
   check =(e) =>{
     e.preventDefault();
-    const {userName,password} = this.state
-    const {savedUsers} = this.props
-    const isTrue = savedUsers.filter(user=>user.userName===userName&&user.password===password)
+    const {email,password} = this.state
 
-    if(isTrue.length)
-      this.props.userCheck(isTrue[0])
-    else alert("Please check your username and password!")
+      this.props.userCheck(email,password)
+      this.props.history.push("/home")
   
   }
 
-  signin = (e) =>{
+  componentWillUpdate =()=>{
+      
+    const {registered} = this.props
+    console.log("registered => "+ registered) 
+  }
+
+  signup = (e) =>{
       e.preventDefault();
-      const {userName,password} = this.state
-       const newSavedUser ={userName,password}
+      const {email,password} = this.state
+       const newSavedUser ={email,password,returnSecureToken:true}
       this.props.setSavedUser(newSavedUser);
       this.setState(()=>({sign:false})) 
   }      
@@ -41,24 +45,27 @@ class Login extends Component {
   }
 
   componentDidMount = ()=>{
-      this.props.getSavedUser();       
+      //this.props.getSavedUser();       
   }
 
   render() {
-    const {userName,password,sign} = this.state
+    const {email,password,sign} = this.state
+ 
+    
     return(
           !sign?
               <div className=" border border-danger rounded col-sm-6 col-10 my-5">
                   <form onSubmit={this.addUser} className="my-2 mx-2" >
-                    <div className="form-group">
-                      <label htmlFor="userName">User Name:</label>
+                  <div className="form-group">
+                      <label htmlFor="email">User Name:</label>
                           <input
-                          type = "text"
-                          name = "userName"
-                          id = "idName"
-                          placeholder = "Enter UserName"
+                          type = "email"
+                          name = "email"
+                          id = "idemail"
+                          placeholder = "Enter Your Email"
                           className = "form-control"
-                          value = {userName}
+                          aria-describedby="emailHelp" 
+                          value = {email}
                           onChange ={this.changeInput}      
                           />                        
                      </div>
@@ -73,8 +80,7 @@ class Login extends Component {
                           value = {password}
                           onChange ={this.changeInput}      
                           />                        
-                     </div>                            
-                                     
+                     </div>        
                       <button className="btn btn-danger btn-block" onClick ={this.check}>LOG IN</button>
                       <button className="btn btn-info btn-block" onClick ={this.openSigninPage}>SIGN IN</button>
                   </form>
@@ -83,14 +89,15 @@ class Login extends Component {
         <div className=" border border-danger rounded col-sm-6 col-10 my-5">
                   <form onSubmit={this.addUser} className="my-2 mx-2" >
                   <div className="form-group">
-                      <label htmlFor="userName">User Name:</label>
+                      <label htmlFor="email">User Name:</label>
                           <input
-                          type = "text"
-                          name = "userName"
-                          id = "idName"
-                          placeholder = "Enter UserName"
+                          type = "email"
+                          name = "email"
+                          id = "idemail"
+                          placeholder = "Enter Your Email"
                           className = "form-control"
-                          value = {userName}
+                          aria-describedby="emailHelp" 
+                          value = {email}
                           onChange ={this.changeInput}      
                           />                        
                      </div>
@@ -107,7 +114,7 @@ class Login extends Component {
                           />                        
                      </div>                            
                                      
-                      <button className="btn btn-info btn-block" onClick ={this.signin}>SIGN IN</button>
+                      <button className="btn btn-info btn-block" onClick ={this.signup}>SIGN IN</button>
                   </form>
               </div>
           
@@ -115,12 +122,13 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  savedUsers : state.saved.savedUsers
+ // savedUsers : state.saved.savedUsers,
+  registered : state.loginUser["registered"]
 })
 
 const mapDispatchToProps = dispatch => ({
-  userCheck : user=> dispatch(userCheck(user)),
-  getSavedUser : () => dispatch(getSavedUser()),
+  userCheck : (email,password)=> dispatch(userCheck(email,password)),
+ // getSavedUser : () => dispatch(getSavedUser()),
   setSavedUser : user => dispatch(setSavedUser(user)) 
 
 

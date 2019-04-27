@@ -7,17 +7,17 @@ import { deleteTrashUser ,reloadUser} from '../store/actions';
 
   allDelete =  (users,e)=>{
     const {deleteTrashUser} = this.props
-    users.filter(user=>{return user.isTrash}).forEach  (user=>{
-      
-       deleteTrashUser(user.id)
+    users.filter(user => user[1].isTrash)
+         .forEach  (user=>{
+           deleteTrashUser(user[0])
     })
   }
   
   allReload =  (e)=>{
     const {users,loginUser,reloadUser} = this.props
-    users.filter(user => user.isTrash&&user.loginId===loginUser[0].id).forEach  (user=>{
-      
-      reloadUser(user.id)
+    users.filter(user => user[1].isTrash)
+         .forEach(user=>{
+          reloadUser(user[0])
     })
   }
 
@@ -36,23 +36,20 @@ import { deleteTrashUser ,reloadUser} from '../store/actions';
             onClick={this.allReload}
             >ALL USERS RELOAD</button></div>
             {
-                users.filter(user=>{return user.isTrash&&user.loginId===loginUser[0].id}).map(user=>{
-                  
-                  
-                    return(
-                      
-                        <User
-                        key = {user.id}
-                        id = {user.id}
-                        name = {user.name}
-                        department ={ user.department}
-                        salery = {user.salery}
-                        isTrash = {user.isTrash}
-                        />
-                    
-                    )
-                  
-                })                            
+            users.filter(user =>user[1].isTrash )
+            .map(user =>{
+              
+              return (
+                <User
+                  key={user[0]}
+                  id={user[0]}
+                  name={user[1].name}
+                  department={user[1].department}
+                  salary={user[1].salary}
+                  isTrash={user[1].isTrash}
+                />
+              );
+            })                            
                   }
            </div>
         

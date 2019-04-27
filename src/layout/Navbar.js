@@ -8,7 +8,7 @@ import { side,logOut } from '../store/actions';
 const Navbar = (props)=>{
     
     const logOut =(loginUser)=>{
-        props.logOut(loginUser[0].id)
+        props.logOut(loginUser)
         window.href="/"
     }
     const {side,loginUser} = props

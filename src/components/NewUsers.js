@@ -22,16 +22,17 @@ import {connect} from "react-redux";
                  </div>
                </div>
                  :    
-               users.filter(user=>!user.isTrash&&user.loginId===loginUser[0].id&&user.creationDate>x).map(user=>{
+               users.filter(user=>!user[1].isTrash&&user[1].creationDate>x)
+               .map(user=>{
                  
                    return(
                     <User
-                    key = {user.id}
-                    id = {user.id}
-                    name = {user.name}
-                    department ={ user.department}
-                    salery = {user.salery}
-                    isTrash={user.isTrash}
+                    key = {user[0]}
+                    id = {user[0]}
+                    name = {user[1].name}
+                    department ={ user[1].department}
+                    salery = {user[1].salery}
+                    isTrash={user[1].isTrash}
                     
                     />
                    )

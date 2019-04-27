@@ -6,4 +6,4 @@
 export * from './sideActions';
 export * from './user';
 export * from './authActions';
-export * from './signinActions';
+export * from './signupActions';
