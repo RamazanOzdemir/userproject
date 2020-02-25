@@ -6,7 +6,8 @@ import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
 
  class User extends Component {
      state = {
-         isVisible : false
+         isVisible : false,
+         isNotVisible: true
      }
 
   onClickEvent = (e) =>{
@@ -26,7 +27,7 @@ import { deleteUser,deleteTrashUser,reloadUser } from '../store/actions';
       let isOK = false;
       
       
-      !isTrash?  isOK=window.confirm("Bu user'ı çöp kutusuna taşımak istiyor musunuz?").valueOf()
+      !isTrash?  isOK=window.confirm("Bu user'ı çöp kutusuna taşımak istiyor musunuz ????").valueOf()
               : isOK=window.confirm("Bu user'ı çöp kutusundan kalıcı olarak silmek istiyor musunuz?").valueOf()
      
      if(isOK&&isTrash&&!trashLoading){

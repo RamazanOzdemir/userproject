@@ -5,13 +5,15 @@ import {connect} from "react-redux";
  class NewUsers extends Component {
 
   render() {
+
+    //Burayada bir coment ekleyelim
     const {users,usersLoading,loginUser} = this.props;
     const x = Date.now()-86400000;
      return (
          <div className ="col-12 mt-2">
-           <div className="col-12 col-sm-6 mx-auto ">
-           <h1 className ="bg-danger text-white mb-3 text-center rounded" 
-           >NEW USERS</h1></div>
+          <div className="col-12 col-sm-6 mx-auto ">
+           <h1 className ="bg-danger text-white mb-3 text-center rounded"> 
+              NEW USERS</h1></div>
            {
                
                
